@@ -10,8 +10,9 @@
     <meta charset="utf-8">
     <title></title>
     <!-- Bootstrap CSS -->
-    <script src="//code.jquery.com/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="styles/style.css">
     <base href="/">
@@ -19,15 +20,51 @@
 
 <body ng-controller="mainCtrl">
 
-    <div class="container">
-        <div class="row names">
-            <div class="col-sm-4">
-                <ul ng-repeat="pokemon in pokemons">
-                    <li ng-click="getPokemon(pokemon.name)">{{pokemon.name}}</li>
-                </ul>
+    <!-- <div class="pageWrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 names">
+                    <ul ng-repeat="pokemon in pokemons">
+                        <li ng-click="getPokemon(pokemon.name)">
+                            <a href="#" data-toggle="modal" data-target="#myModal">{{pokemon.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-8">
+                    <img ng-src="{{pokeCard.sprites.front_default}}" alt="" />
+                </div>
             </div>
-            <div class="col-sm-8">
-                <img ng-src="{{pokeCard.sprites.front_default}}" alt="" />
+        </div>
+    </div> -->
+    <div class="container">
+        <div class="row">
+            <div ng-repeat="pokemon in pokemons">
+                <div class="prodImageContainer" data-toggle="modal" data-target='#{{pokemon.name}}'>
+                    <a href="" ng-click="getPokemon(pokemon.name)">{{pokemon.name}}</a>
+                </div>
+
+                <!-- MODAL -->
+                <div class="modal fade" id={{pokemon.name}} role='dialog'>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h3 class="modal-title" id="myModalLabel">{{pokeCard.name}}</h3>
+                            </div>
+                            <div class="modal-body">
+                                <img ng-src="{{pokeCard.sprites.front_default}}" alt="" />
+                                <img ng-src="{{pokeCard.sprites.back_default}}" alt="" />
+                                <img ng-src="{{pokeCard.sprites.front_default}}" alt="" />
+                                <img ng-src="{{pokeCard.sprites.back_default}}" alt="" />
+                            </div>
+                            <div class="modal-footer">
+                                <div><b>Condition</b>: {{product.condition}}</div>
+                                <div><b>Details</b>: {{product.summary}}</div>
+
+                                <div><b>Price</b>: <span class="dollar">$</span>{{product.price}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

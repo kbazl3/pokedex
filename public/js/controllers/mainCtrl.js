@@ -10,7 +10,7 @@ angular.module("app")
         $scope.getPokemon = function(name) {
             mainSvc.getPokemon(name)
                 .then(function(response) {
-                    console.log(response.data.sprites);
+                    console.log(response.data);
                     $scope.pokeCard = response.data;
                 })
         }
